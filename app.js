@@ -5,6 +5,7 @@ var logger = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const config = require('./config/config');
+const passport = require('passport');
 
 
 var indexRouter = require('./routes/index');
@@ -19,6 +20,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+const passportMiddleware = require('./middleware/passport');
+passport.use(passportMiddleware);
 
 app.use('/api', indexRouter);
 app.use('/users', usersRouter);
