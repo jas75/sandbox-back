@@ -13,4 +13,10 @@ router.get('/', function(req, res, next) {
 // @access  Public
 router.post('/user', authController.registerUser);
 
+
+// @route   POST /api/login
+// @des     Login user
+// @access  Public
+router.post('/login', authController.loginUser);
+
 module.exports = router;
