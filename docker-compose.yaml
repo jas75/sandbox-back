@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  sandbox-front:
+    image: "sandbox-front:1.0.1"
+    ports: 
+      - "80:80"
+    depends_on:
+      - sandbox-back
+    container_name: sandbox-front
+    networks:
+      - test
+    # entrypoint:
+    #   - -Ehttp.cors.enabled=true
+    #   - -Ehttp.cors.allow-origin=xxx
+    #   - -Ehttp.cors.allow-headers=Content-Type,Content-Length,Authorization
+    #   - -Ehttp.cors.allow-credentials=true
+  
+  sandbox-back:
+    image: "sandbox-back:1.0.1"
+    ports: 
+      - "3000:3000"
+    depends_on:
+      - mongo
+    container_name: sandbox-back
+    networks:
+      - test
+    #volumes:
+     # - .:/sandbox-back    
+  mongo:
+    image: "mongo"
+    ports:
+      - "27017:27017"
+    container_name: mongo
+    networks:
+      - test
+    #volumes:
+     # - data:/data/db
+
+#volumes:
+ # data:
+networks:
+  test:
