@@ -46,7 +46,7 @@ version: "3"
 
 services:
   sandbox-front:
-    image: "sandbox-front:1.0.1"
+    image: "sandbox-front:1.0.2"
     ports: 
       - "62530:80"
     depends_on:
@@ -55,7 +55,7 @@ services:
     networks:
       - test
     environment:
-      API_SERVER_NAME: "sandbox-back"
+      API_SERVER_NAME: sandbox-back
     # entrypoint:
     #   - -Ehttp.cors.enabled=true
     #   - -Ehttp.cors.allow-origin=xxx
@@ -63,7 +63,7 @@ services:
     #   - -Ehttp.cors.allow-credentials=true
   
   sandbox-back:
-    image: "sandbox-back:1.0.1"
+    image: "sandbox-back:1.0.2"
     depends_on:
       - mongo
     container_name: sandbox-back
